@@ -16,9 +16,10 @@
 
 <div class="chat">
 
-    <div class="chat__sidebar">
+    <div id="sidebar" class="chat__sidebar">
 
     </div>
+
     <div class="chat__main">
 
         <!-- This block will contain all the messages rendered with mustache library -->
@@ -26,7 +27,7 @@
 
         <div class="compose">
             <form id="message-form">
-                <input name="message" placeholder="Message">
+                <input name="message" placeholder="Message" required autocomplete="off">
                 <button type="submit">Send</button>
             </form>
             <button id="send-location">Send location</button>
@@ -41,7 +42,7 @@
 
     <div class="message">
         <p>
-            <span class="message__name">Some user name</span>
+            <span class="message__name">{{ username }}</span>
             <span class="message__meta">{{ createdAt }}</span>
         </p>
         <p>{{ message }}</p>
@@ -54,13 +55,27 @@
 
     <div class="message">
         <p>
-            <span class="message__name">Some user name</span>
+            <span class="message__name">{{ username }}</span>
             <span class="message__meta">{{ location_createdAt }}</span>
         </p>
         <p>
             <a href="{{ url }}" target="_blank">My current location</a>
         </p>
     </div>
+
+</script>
+
+<script id="sidebar-template" type="text/html">
+
+    <h2 class="room-title">{{ room }}</h2>
+    <h3 class="list-title">Users</h3>
+
+    <ul class="users">
+        <!-- loop through users list: -->
+        {{ #users }}
+            <li>{{ username }}</li>
+        {{ /users }}
+    </ul>
 
 </script>
 
